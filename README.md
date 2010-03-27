@@ -1,0 +1,1 @@
+Base kohana v3 core modules installation
