@@ -106,3 +106,12 @@
 [submodule "modules/userguide"]
 	path = modules/userguide
 	url = git://github.com/kohana/userguide.git
+[submodule "modules/cache"]
+	path = modules/cache
+	url = git://github.com/samsoir/kohana-cache.git
+[submodule "modules/date"]
+	path = modules/date
+	url = git://github.com/BRMatt/kohana-date.git
+[submodule "modules/dbforge"]
+	path = modules/dbforge
+	url = git://github.com/ollym/dbforge.git
