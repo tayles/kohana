@@ -22,9 +22,87 @@
 [submodule "modules/unittest"]
 	path = modules/unittest
 	url = git://github.com/kohana/unittest.git
-[submodule "modules/userguide"]
-	path = modules/userguide
-	url = git://github.com/kohana/userguide.git
+[submodule "modules/a1"]
+	path = modules/a1
+	url = git://github.com/Wouterrr/A1.git
+[submodule "modules/acl"]
+	path = modules/acl
+	url = git://github.com/Wouterrr/ACL.git
+[submodule "modules/archive"]
+	path = modules/archive
+	url = git://github.com/BRMatt/kohana-archive.git
+[submodule "modules/message"]
+	path = modules/message
+	url = git://github.com/daveWid/message.git
+[submodule "modules/aacl"]
+	path = modules/aacl
+	url = git://github.com/banks/aacl.git
+[submodule "modules/akismet"]
+	path = modules/akismet
+	url = git://github.com/Greenek/kohana3-akismet.git
+[submodule "modules/editor"]
+	path = modules/editor
+	url = git://github.com/biakaveron/editor.git
+[submodule "modules/cron"]
+	path = modules/cron
+	url = git://github.com/cbandy/kohana-cron.git
+[submodule "modules/cache2"]
+	path = modules/cache2
+	url = git://github.com/necros/kohana-cache.git
+[submodule "modules/a2"]
+	path = modules/a2
+	url = git://github.com/Wouterrr/A2.git
+[submodule "modules/captcha"]
+	path = modules/captcha
+	url = git://github.com/kolanos/kohana-captcha.git
+[submodule "modules/daemon"]
+	path = modules/daemon
+	url = git://github.com/ollym/daemon.git
+[submodule "modules/firephp"]
+	path = modules/firephp
+	url = git://github.com/pedrosland/kohana-firephp.git
+[submodule "modules/geocode"]
+	path = modules/geocode
+	url = git://github.com/kolanos/kohana-geocode.git
+[submodule "modules/event"]
+	path = modules/event
+	url = git://github.com/ollym/event.git
+[submodule "modules/jelly-auth"]
+	path = modules/jelly-auth
+	url = git://github.com/raeldc/jelly-auth.git
+[submodule "modules/sitemap"]
+	path = modules/sitemap
+	url = git://github.com/ThePixelDeveloper/Sitemap.git
+[submodule "modules/gcheckout"]
+	path = modules/gcheckout
+	url = git://github.com/shadowhand/gcheckout.git
+[submodule "modules/paypal"]
+	path = modules/paypal
+	url = git://github.com/shadowhand/paypal.git
+[submodule "modules/slicehost"]
+	path = modules/slicehost
+	url = git://github.com/transphorm/slicehost.git
+[submodule "modules/jelly"]
+	path = modules/jelly
+	url = git://github.com/jonathangeiger/kohana-jelly.git
+[submodule "modules/email"]
+	path = modules/email
+	url = git://github.com/banks/kohana-email.git
+[submodule "modules/shindig"]
+	path = modules/shindig
+	url = git://github.com/kerkness/shindig.git
 [submodule "modules/codebench"]
 	path = modules/codebench
 	url = git://github.com/kohana/codebench.git
+[submodule "modules/table"]
+	path = modules/table
+	url = git://github.com/kerkness/kohana-table.git
+[submodule "modules/task-queue"]
+	path = modules/task-queue
+	url = git://github.com/jonnyjon/Task-Queue.git
+[submodule "modules/twitter"]
+	path = modules/twitter
+	url = git://github.com/transphorm/twitter.git
+[submodule "modules/userguide"]
+	path = modules/userguide
+	url = git://github.com/kohana/userguide.git
