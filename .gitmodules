@@ -58,9 +58,6 @@
 [submodule "modules/daemon"]
 	path = modules/daemon
 	url = git://github.com/ollym/daemon.git
-[submodule "modules/firephp"]
-	path = modules/firephp
-	url = git://github.com/pedrosland/kohana-firephp.git
 [submodule "modules/geocode"]
 	path = modules/geocode
 	url = git://github.com/kolanos/kohana-geocode.git
