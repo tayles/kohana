@@ -112,3 +112,6 @@
 [submodule "modules/dbforge"]
 	path = modules/dbforge
 	url = git://github.com/ollym/dbforge.git
+[submodule "modules/firephp"]
+	path = modules/firephp
+	url = git://github.com/jeremyf76/KO3_FirePHP.git
