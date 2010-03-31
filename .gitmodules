@@ -115,3 +115,6 @@
 [submodule "modules/firephp"]
 	path = modules/firephp
 	url = git://github.com/jeremyf76/KO3_FirePHP.git
+[submodule "modules/pdfview"]
+	path = modules/pdfview
+	url = git://github.com/shadowhand/pdfview.git
