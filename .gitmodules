@@ -91,9 +91,6 @@
 [submodule "modules/codebench"]
 	path = modules/codebench
 	url = git://github.com/kohana/codebench.git
-[submodule "modules/table"]
-	path = modules/table
-	url = git://github.com/kerkness/kohana-table.git
 [submodule "modules/task-queue"]
 	path = modules/task-queue
 	url = git://github.com/jonnyjon/Task-Queue.git
@@ -118,3 +115,6 @@
 [submodule "modules/pdfview"]
 	path = modules/pdfview
 	url = git://github.com/shadowhand/pdfview.git
+[submodule "modules/table"]
+	path = modules/table
+	url = git://github.com/smgladkovskiy/kohana-table.git
