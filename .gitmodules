@@ -28,9 +28,6 @@
 [submodule "modules/acl"]
 	path = modules/acl
 	url = git://github.com/Wouterrr/ACL.git
-[submodule "modules/archive"]
-	path = modules/archive
-	url = git://github.com/BRMatt/kohana-archive.git
 [submodule "modules/message"]
 	path = modules/message
 	url = git://github.com/daveWid/message.git
@@ -118,3 +115,6 @@
 [submodule "modules/table"]
 	path = modules/table
 	url = git://github.com/smgladkovskiy/kohana-table.git
+[submodule "modules/archive"]
+	path = modules/archive
+	url = git://github.com/zazu/kohana-archive.git
