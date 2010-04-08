@@ -115,3 +115,6 @@
 [submodule "modules/table"]
 	path = modules/table
 	url = git://github.com/smgladkovskiy/kohana-table.git
+[submodule "modules/archive"]
+	path = modules/archive
+	url = git://github.com/zazu/kohana-archive.git

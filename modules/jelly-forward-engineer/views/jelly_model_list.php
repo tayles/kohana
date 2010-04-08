@@ -34,7 +34,8 @@ window.onload = function() {
 
 <h1>Jelly Models</h1>
 
-<?=Html::anchor('jellyforwardengineer/downloadModels', 'Download all models (jelly_models.zip)');?>
+<?=Html::anchor('jellyforwardengineer/downloadModels', 'Download all models (jelly_models.zip)');?> 
+<small><em>Requires Archive module from <?=Html::anchor('http://github.com/zazu/kohana-archive');?></em></small>
 
 <div>
 <p>Generated models:</p>
