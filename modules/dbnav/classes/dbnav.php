@@ -1,8 +1,6 @@
 <?php defined('SYSPATH') or die('No direct script access.');
 
 class DBNav {
-
-	public $schemas;
 	
 	public $per_page = 10;
 	
@@ -18,38 +16,120 @@ class DBNav {
   }
   
 	public function schemata() {
-		$schemata = DB::query(Database::SELECT, 'SELECT SCHEMA_NAME as name, DEFAULT_CHARACTER_SET_NAME as charset, DEFAULT_COLLATION_NAME as collation FROM information_schema.schemata s')
-					->as_object('DBNav_Schema')
-					->execute();
+		$schemata = DB::select(
+							array('SCHEMA_NAME',					'name'),
+							array('DEFAULT_CHARACTER_SET_NAME',		'charset'),
+							array('DEFAULT_COLLATION_NAME',			'collation')
+						)
+						->from('information_schema.schemata')
+						->as_object('DBNav_Schema')
+						->execute();
 		return $schemata;
 	}
 	
 	public function tables($schema_name) {
-		$tables = DB::query(Database::SELECT, 'SELECT TABLE_NAME as name, ENGINE as engine, TABLE_ROWS as num_rows, AVG_ROW_LENGTH as avg_row_length, DATA_LENGTH as data_length, INDEX_LENGTH as index_length, AUTO_INCREMENT as auto_incr, UNIX_TIMESTAMP(CREATE_TIME) as created, UNIX_TIMESTAMP(UPDATE_TIME) as updated, UNIX_TIMESTAMP(CHECK_TIME) as checked, TABLE_COLLATION as collation, TABLE_COMMENT as comment FROM information_schema.tables t WHERE t.table_schema = :schema')
-					->param(':schema', $schema_name)
-					->as_object('DBNav_Table')
-					->execute();
-		return $tables;
+		$tables = DB::select(
+							array('TABLE_NAME',						'name'),
+							array('ENGINE',							'engine'),
+							array('TABLE_ROWS',						'num_rows'),
+							array('AVG_ROW_LENGTH',					'avg_row_size'),
+							array('DATA_LENGTH',					'data_size'),
+							array('INDEX_LENGTH',					'index_size'),
+							array('AUTO_INCREMENT',					'auto_incr_id'),
+							array('UNIX_TIMESTAMP("CREATE_TIME")',	'date_created'),
+							array('UNIX_TIMESTAMP("UPDATE_TIME")',	'date_updated'),
+							array('UNIX_TIMESTAMP("CHECK_TIME")',	'date_checked'),
+							array('TABLE_COLLATION',				'collation'),
+							array('TABLE_COMMENT',					'comment')
+						)
+						->from('information_schema.tables')
+						->where('table_schema', '=', $schema_name)
+						->as_object('DBNav_Table')
+						->execute();
+						
+		$table_arr = array();
+		foreach( $tables as $table ) {
+			$table->pre_process();
+			$table_arr[$table->name] = $table;
+		}
+		
+		return $table_arr;
 	}
+	
+	public function columns($schema_name, $table_name) {
+		$columns = DB::select(
+							array('COLUMN_NAME',					'name'),
+							array('COLUMN_DEFAULT',					'default'),
+							array('IF(STRCMP("IS_NULLABLE",\'YES\'), 0, 1)',	'nullable'),
+							array('DATA_TYPE',						'type'),
+							array('COLUMN_TYPE',					'raw_type'),
+							array('CHARACTER_MAXIMUM_LENGTH',		'length'),
+							array('NUMERIC_PRECISION',				'numeric_precision'),
+							array('NUMERIC_SCALE',					'numeric_scale'),
+							array('CHARACTER_SET_NAME',				'charset'),
+							array('COLLATION_NAME',					'collation'),
+							array('COLUMN_KEY',						'keys'),
+							array('EXTRA',							'extra'),
+							array('COLUMN_COMMENT',					'comment')
+						)
+						->from('information_schema.columns')
+						->where('table_schema', '=', $schema_name)
+						->where('table_name', '=', $table_name)
+						->as_object('DBNav_Column')
+						->execute();
+					
+		// store in an assoc array so we can reference by column name
+		$column_arr = array();
+		foreach( $columns as $column ) {
+			$column->pre_process();
+			$column_arr[$column->name] = $column;
+		}
+		return $column_arr;
+	}
+	
+	
+	
 
 	public function schema($schema_name) {
-		$schema = DB::query(Database::SELECT, 'SELECT SCHEMA_NAME as name, DEFAULT_CHARACTER_SET_NAME as charset, DEFAULT_COLLATION_NAME as collation FROM information_schema.schemata s WHERE SCHEMA_NAME = :schema')
-					->param(':schema', $schema_name)
-					->as_object('DBNav_Schema')
-					->execute()->current();
+		$schema = DB::select(
+							array('SCHEMA_NAME',					'name'),
+							array('DEFAULT_CHARACTER_SET_NAME',		'charset'),
+							array('DEFAULT_COLLATION_NAME',			'collation')
+						)
+						->from('information_schema.schemata')
+						->where('SCHEMA_NAME', '=', $schema_name)
+						->as_object('DBNav_Schema')
+						->execute()
+						->current();
 		return $schema;
 	}
 	
-	public function table($table_name) {
-		$tables = DB::query(Database::SELECT, 'SELECT TABLE_NAME as name, ENGINE as engine, TABLE_ROWS as num_rows, AVG_ROW_LENGTH as avg_row_length, DATA_LENGTH as data_length, INDEX_LENGTH as index_length, AUTO_INCREMENT as auto_incr, UNIX_TIMESTAMP(CREATE_TIME) as created, UNIX_TIMESTAMP(UPDATE_TIME) as updated, UNIX_TIMESTAMP(CHECK_TIME) as checked, TABLE_COLLATION as collation, TABLE_COMMENT as comment FROM information_schema.tables t WHERE t.table_schema = :schema AND t.table_name = :table')
-					->param(':schema', 'pubjury')
-					->param(':table', $table_name)
-					->as_object('DBNav_Table')
-					->execute()->current();
-		return $tables;
+	public function table($schema_name, $table_name) {
+		$table = DB::select(
+							array('TABLE_NAME',						'name'),
+							array('ENGINE',							'engine'),
+							array('TABLE_ROWS',						'num_rows'),
+							array('AVG_ROW_LENGTH',					'avg_row_size'),
+							array('DATA_LENGTH',					'data_size'),
+							array('INDEX_LENGTH',					'index_size'),
+							array('AUTO_INCREMENT',					'auto_incr_id'),
+							array('UNIX_TIMESTAMP("CREATE_TIME")',	'date_created'),
+							array('UNIX_TIMESTAMP("UPDATE_TIME")',	'date_updated'),
+							array('UNIX_TIMESTAMP("CHECK_TIME")',	'date_checked'),
+							array('TABLE_COLLATION',				'collation'),
+							array('TABLE_COMMENT',					'comment')
+						)
+						->from('information_schema.tables')
+						->where('table_schema', '=', $schema_name)
+						->where('table_name', '=', $table_name)
+						->as_object('DBNav_Table')
+						->execute()
+						->current();
+		$table->pre_process();
+		return $table;
 	}
 	
-	public function rows($table_name, $page = 1, $per_page = 10) {
+	public function rows($schema_name, $table_name, $page = 1, $per_page = 10) {
 	
 		$offset = ($page - 1) * $per_page;
 	
@@ -64,6 +144,30 @@ class DBNav {
 					->execute();
 					
 		return array( $total_count, $rows );
+	}
+	
+	
+	public function indices($schema_name, $table_name) {
+		$indices = DB::select(
+							array('IF("NON_UNIQUE" = 0, 1, 0 )',	'unique'),
+							array('INDEX_SCHEMA',					'schema'),
+							array('INDEX_NAME',						'name'),
+							array('SEQ_IN_INDEX',					'seq_in_index'),
+							array('COLUMN_NAME',					'column_name'),
+							array('COLLATION',						'collation'),
+							array('CARDINALITY',					'cardinality'),
+							array('SUB_PART',						'sub_part'),
+							array('PACKED',							'packed'),
+							array('IF(STRCMP("NULLABLE",\'YES\'), 0, 1)',	'nullable'),
+							array('INDEX_TYPE',						'type'),
+							array('COMMENT',						'comment')
+						)
+						->from('information_schema.statistics')
+						->where('table_schema', '=', $schema_name)
+						->where('table_name', '=', $table_name)
+						->as_object('DBNav_Index')
+						->execute();
+		return $indices;
 	}
   
 

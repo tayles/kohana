@@ -1,8 +1,5 @@
-<? if( $schemata->count() > 0 ) : ?>
-<? foreach( $schemata as $schema ) : ?>
-<?=Html::anchor('dbnav/' . $schema->name, $schema->name);?>
-<br />
-<? endforeach; ?>
+<? if( count($schemata) > 0 ) : ?>
+<?=$tbl_view->render();?>
 <? else : ?>
 <p><em>No schemata found</em></p>
 <? endif; ?>

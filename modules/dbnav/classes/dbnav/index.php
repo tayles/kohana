@@ -2,6 +2,6 @@
 
 class DBNav_Index extends Model {
 
-	public $name, $type, $unique, $cardinality, $columns;
-
+	public $name, $unique, $schema, $seq_in_index, $column_name, $collation, $cardinality, $sub_part, $packed, $nullable, $type, $comment;
+	
 }

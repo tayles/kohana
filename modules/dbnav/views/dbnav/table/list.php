@@ -1,5 +1,3 @@
-<p><?=Html::anchor('dbnav', '&laquo; list databases');?></p>
-
 <? if( count($tables) > 0 ) : ?>
 <p>
 <? foreach( $tables as $table ) : ?>
