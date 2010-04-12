@@ -2,6 +2,6 @@
 
 class DBNav_Engine extends Model {
 
-	public $name, $support, $comment, $transactions, $xa, $savepoints;
+	public $name, $support, $comment, $transactions, $xa, $save_points;
 	
 }

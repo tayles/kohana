@@ -72,5 +72,23 @@ class DBNav_Column extends Model {
 
 		return array($type, $length);
 	}
+	
+	public function type() {
+		return $this->type . ( $this->length() ? '(' . $this->length . ')' : '' );
+	}
+	
+	public function length() {
+		switch($this->type) {
+			case 'enum':
+			case 'set':
+			case 'mediumtext':
+			case 'longtext':
+				return NULL;
+			case 'decimal':
+				return $this->numeric_precision + $this->numeric_scale + 1;
+			default:
+				return $this->length;
+		}
+	}
 
 }

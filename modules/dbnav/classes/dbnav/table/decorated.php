@@ -7,19 +7,10 @@ class DBNav_Decorated_Table extends DBNav_Admin_Table {
 	// set all properties in the constructor
 		public function __construct($data) {
 			$this->set_body_data($data)
-					->add_column('dbnav_select')
-					->set_footer('&#8598; with selected: ' . Html::anchor('#', 'Edit') . ' ' . Html::anchor('#', 'Delete'));
-			#$this->set_row_titles(array_shift(array_keys($this->body_data[0])));
+					->set_column_titles(Table::AUTO);
 		}
 		
 		protected function _generate_body_cell($row, $column_name) {
-			
-			if( $column_name == 'dbnav_select' ) {
-				return '<td><input type="checkbox" name="ids[]" id="idval_' . $row . '" value="idval" /></td>';
-			}
-			else if( $column_name == 'dbnav_options' ) {
-				return '<td>' . Html::anchor('#', 'Edit') . ' ' . Html::anchor('#', 'Delete') . '</td>';
-			}
 			
 			$val = $this->body_data[$row][$column_name];
 			
@@ -33,7 +24,7 @@ class DBNav_Decorated_Table extends DBNav_Admin_Table {
 			
 			// do column type based alternations
 			if( $column->keys == 'PRI' ) {
-				$val_mod = Html::anchor(array('dbnav', $this->user_data['schema']->name, $this->user_data['table']->name, 'row', $val), $val);
+				$val_mod = Html::anchor(array('dbnav', 'db', $this->user_data['schema']->name, 'tbl', $this->user_data['table']->name, 'record', $val), $val);
 			}			
 			else if( in_array( $column->type, array('datetime', 'date', 'time', 'timestamp') ) ) {
 				// pretty print the date/time
@@ -94,6 +85,18 @@ class DBNav_Decorated_Table extends DBNav_Admin_Table {
 			else if( Text::contains($column_name, 'country') && preg_match('/^[a-z]{2}$/i', $val) ) {
 				// assume we have an iso country code
 				$val_mod = Html::image('http://static.pubjury.local:8088/images/flags/' . strtolower($val) . '.png') . ' ' . $val;
+			}
+			else if( in_array($column->type, array('double', 'float')) && $contains = Text::contains($column_name, array('lat','latitude')) ) {
+				// check if we have a corresponding longitude
+				foreach( array('lng', 'long', 'longitude', 'lon') as $longitude ) {
+					$longitude_key = str_replace($contains, $longitude, $column_name);
+					if( isset($this->user_data['columns'][$longitude_key]) ) {
+						// assume we have a valid lat/lng pair - display a map icon
+						$coords = $val . ', ' . $this->body_data[$row][$longitude_key];
+						$val_mod = Html::anchor('http://maps.google.co.uk/maps?q=' . $coords, Html::image('http://static.pubjury.local:8088/images/icons/fireeagle.png'), array('class'=>'coords','title'=>$coords)) . ' ' . $val;
+						break;
+					}
+				}
 			}
 						
 			// do cell value based alterations

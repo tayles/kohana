@@ -27,7 +27,8 @@ class Text extends Kohana_Text {
 	 **/
 	public static function contains($str, $endings) {
 		$endings = (array)$endings;
-		return preg_match('/(?:^|\b|_)' . implode('|', $endings) . '(?:$|\b|_)/i', $str);
+		preg_match('/(?:^|\b|_)(' . implode('|', $endings) . ')(?:$|\b|_)/i', $str, $matches);
+		return ( $matches ? $matches[1] : null );
 	}
 
 }

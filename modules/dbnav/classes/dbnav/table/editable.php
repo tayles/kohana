@@ -1,6 +1,6 @@
 <?php defined('SYSPATH') OR die('No direct access allowed.');
 
-class DBNav_Admin_Table extends Table {
+class DBNav_Editable_Table extends Table {
 
 	// set all properties in the constructor
 		public function __construct($data) {
@@ -13,10 +13,8 @@ class DBNav_Admin_Table extends Table {
 			
 			$val = $this->body_data[$row][$column_name];
 			
-			if( in_array( $column_name, array('support', 'transactions', 'xa', 'save_points', 'auto_incr', 'nullable', 'unsigned', 'zerofill', 'unique') ) ) {
-				if( in_array( $val, array('1', '0', 1, 0, TRUE, FALSE), TRUE ) ) {	// strict comparison
-					$val_mod = '<span class="boolean">' . ($val ? '&#10003;' : '&#10007;') . '</span>';
-				}
+			if( in_array( $column_name, array('auto_incr', 'nullable', 'unsigned', 'zerofill', 'unique') ) ) {
+				$val_mod = '<span class="boolean">' . ($val ? '&#10003;' : '&#10007;') . '</span>';
 			}
 			else if( in_array($column_name, array('auto_incr_id', 'num_rows', 'length', 'numeric_precision', 'numeric_scale', 'seq_in_index', 'cardinality') ) ) {
 				$val_mod = number_format($val);
@@ -33,20 +31,20 @@ class DBNav_Admin_Table extends Table {
 			}
 			
 			
-			if( $column_name == 'name' && isset($this->user_data['link_type']) ) {
+			if( $column_name == 'name' ) {
 				switch($this->user_data['link_type']) {
 					case 'column':
-						$val_mod = Html::anchor(array('dbnav', 'db', $this->user_data['schema']->name, 'tbl', $this->user_data['table']->name, 'column', $val), $val);
+						$val_mod = Html::anchor(array('dbnav', $this->user_data['schema']->name, $this->user_data['table']->name, 'column', $val), $val);
 						break;
 					case 'index':
-						$val_mod = Html::anchor(array('dbnav', 'db', $this->user_data['schema']->name, 'tbl', $this->user_data['table']->name, 'index', $val), $val);
+						$val_mod = Html::anchor(array('dbnav', $this->user_data['schema']->name, $this->user_data['table']->name, 'index', $val), $val);
 						break;
 					case 'table':
-						$val_mod = Html::anchor(array('dbnav', 'db', $this->user_data['schema']->name, 'tbl', $val), $val);
+						$val_mod = Html::anchor(array('dbnav', $this->user_data['schema']->name, $val), $val);
 						break;
 					case 'schema':
 					default:
-						$val_mod = Html::anchor(array('dbnav', 'db', $val), $val);
+						$val_mod = Html::anchor(array('dbnav', $val), $val);
 						break;
 				}
 			}
