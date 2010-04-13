@@ -88,9 +88,6 @@
 [submodule "modules/twitter"]
 	path = modules/twitter
 	url = git://github.com/transphorm/twitter.git
-[submodule "modules/userguide"]
-	path = modules/userguide
-	url = git://github.com/kohana/userguide.git
 [submodule "modules/cache"]
 	path = modules/cache
 	url = git://github.com/samsoir/kohana-cache.git
@@ -121,3 +118,9 @@
 [submodule "modules/table"]
 	path = modules/table
 	url = git@github.com:tayles/kohana-table.git
+[submodule "modules/jelly-reverse-engineer"]
+	path = modules/jelly-reverse-engineer
+	url = git@github.com:tayles/kohana-jelly-reverse-engineer.git
+[submodule "modules/userguide"]
+	path = modules/userguide
+	url = git://github.com/kohana/userguide.git
