@@ -1,1 +1,0 @@
-<?=$tbl_view->render();?>
