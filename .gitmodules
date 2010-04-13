@@ -115,3 +115,6 @@
 [submodule "modules/archive"]
 	path = modules/archive
 	url = git://github.com/zazu/kohana-archive.git
+[submodule "system"]
+	path = system
+	url = git@github.com:tayles/kohana-core.git
