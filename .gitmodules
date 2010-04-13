@@ -106,12 +106,18 @@
 [submodule "modules/pdfview"]
 	path = modules/pdfview
 	url = git://github.com/shadowhand/pdfview.git
-[submodule "modules/table"]
-	path = modules/table
-	url = git://github.com/smgladkovskiy/kohana-table.git
 [submodule "modules/archive"]
 	path = modules/archive
 	url = git://github.com/zazu/kohana-archive.git
 [submodule "system"]
 	path = system
 	url = git@github.com:tayles/kohana-core.git
+[submodule "modules/database"]
+	path = modules/database
+	url = git@github.com:tayles/kohana-database.git
+[submodule "modules/dbnav"]
+	path = modules/dbnav
+	url = git@github.com:tayles/kohana-dbnav.git
+[submodule "modules/table"]
+	path = modules/table
+	url = git@github.com:tayles/kohana-table.git
