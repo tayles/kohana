@@ -124,3 +124,9 @@
 [submodule "modules/userguide"]
 	path = modules/userguide
 	url = git://github.com/kohana/userguide.git
+[submodule "modules/asset"]
+	path = modules/asset
+	url = git@github.com:tayles/kohana-asset.git
+[submodule "modules/jelly-auth-demo"]
+	path = modules/jelly-auth-demo
+	url = git://github.com/rob/jelly-auth-demo.git
