@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>currentDocument</key>
-	<string>modules/dbnav/config/dbnav.php</string>
+	<string>modules/jelly-auth/classes/model/user.php</string>
 	<key>documents</key>
 	<array>
 		<dict>
@@ -21,34 +21,6 @@
 	<integer>200</integer>
 	<key>metaData</key>
 	<dict>
-		<key>modules/dbnav/classes/controller/dbnav.php</key>
-		<dict>
-			<key>caret</key>
-			<dict>
-				<key>column</key>
-				<integer>168</integer>
-				<key>line</key>
-				<integer>326</integer>
-			</dict>
-			<key>firstVisibleColumn</key>
-			<integer>0</integer>
-			<key>firstVisibleLine</key>
-			<integer>297</integer>
-		</dict>
-		<key>modules/dbnav/classes/dbnav.php</key>
-		<dict>
-			<key>caret</key>
-			<dict>
-				<key>column</key>
-				<integer>20</integer>
-				<key>line</key>
-				<integer>19</integer>
-			</dict>
-			<key>firstVisibleColumn</key>
-			<integer>0</integer>
-			<key>firstVisibleLine</key>
-			<integer>0</integer>
-		</dict>
 		<key>modules/dbnav/classes/dbnav/column.php</key>
 		<dict>
 			<key>caret</key>
@@ -63,14 +35,42 @@
 			<key>firstVisibleLine</key>
 			<integer>4</integer>
 		</dict>
-		<key>modules/dbnav/config/dbnav.php</key>
+		<key>modules/jelly-auth-demo/application/classes/controller/base.php</key>
 		<dict>
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>17</integer>
+				<integer>33</integer>
 				<key>line</key>
-				<integer>5</integer>
+				<integer>15</integer>
+			</dict>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>0</integer>
+		</dict>
+		<key>modules/jelly-auth-demo/data/sql/jelly-auth-schema.sql</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>31</integer>
+				<key>line</key>
+				<integer>22</integer>
+			</dict>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>0</integer>
+		</dict>
+		<key>modules/jelly-auth/classes/model/user.php</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>43</integer>
+				<key>line</key>
+				<integer>6</integer>
 			</dict>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
@@ -80,9 +80,9 @@
 	</dict>
 	<key>openDocuments</key>
 	<array>
-		<string>modules/dbnav/classes/dbnav.php</string>
-		<string>modules/dbnav/classes/controller/dbnav.php</string>
-		<string>modules/dbnav/config/dbnav.php</string>
+		<string>modules/jelly-auth-demo/data/sql/jelly-auth-schema.sql</string>
+		<string>modules/jelly-auth/classes/model/user.php</string>
+		<string>modules/jelly-auth-demo/application/classes/controller/base.php</string>
 		<string>modules/dbnav/classes/dbnav/column.php</string>
 	</array>
 	<key>showFileHierarchyDrawer</key>
