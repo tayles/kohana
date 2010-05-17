@@ -133,3 +133,6 @@
 [submodule "modules/editor"]
 	path = modules/editor
 	url = git://github.com/biakaveron/editor.git
+[submodule "modules/geoip3"]
+	path = modules/geoip3
+	url = http://github.com/ryross/geoip3.git
